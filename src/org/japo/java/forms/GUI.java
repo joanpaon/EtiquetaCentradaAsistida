@@ -16,7 +16,6 @@
 package org.japo.java.forms;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.util.Properties;
 import javax.swing.JFrame;
 import org.japo.java.libraries.UtilesSwing;
@@ -68,6 +67,7 @@ public final class GUI extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Swing Asistido #03");
+        setSize(new java.awt.Dimension(500, 300));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         lblRotulo.setFont(new java.awt.Font("SansSerif", 1, 70)); // NOI18N
@@ -98,7 +98,7 @@ public final class GUI extends JFrame {
 
         // Panel Principal
         getContentPane().setBackground(Color.RED);
-        
+
         // Ventana Principal
         setTitle(prp.getProperty(PRP_FORM_TITLE, DEF_FORM_TITLE));
         try {
