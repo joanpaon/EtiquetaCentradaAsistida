@@ -15,7 +15,6 @@
  */
 package org.japo.java.forms;
 
-import java.awt.Color;
 import java.util.Properties;
 import javax.swing.JFrame;
 import org.japo.java.libraries.UtilesSwing;
@@ -25,20 +24,6 @@ import org.japo.java.libraries.UtilesSwing;
  * @author José A. Pacheco Ondoño - joanpaon@gmail.com
  */
 public final class GUI extends JFrame {
-
-    // Propiedades App
-    public static final String PRP_FAVICON_RESOURCE = "favicon_resource";
-    public static final String PRP_FORM_TITLE = "form_title";
-    public static final String PRP_FORM_WIDTH = "form_width";
-    public static final String PRP_FORM_HEIGHT = "form_height";
-    public static final String PRP_LOOK_AND_FEEL_PROFILE = "look_and_feel_profile";
-
-    // Valores por Defecto
-    public static final String DEF_FAVICON_RESOURCE = "img/favicon.png";
-    public static final String DEF_FORM_TITLE = "Swing Manual App";
-    public static final int DEF_FORM_WIDTH = 500;
-    public static final int DEF_FORM_HEIGHT = 300;
-    public static final String DEF_LOOK_AND_FEEL_PROFILE = UtilesSwing.LNF_WINDOWS_PROFILE;
 
     // Referencias
     private final Properties prp;
@@ -68,12 +53,14 @@ public final class GUI extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Swing Asistido #03");
         setSize(new java.awt.Dimension(500, 300));
-        getContentPane().setLayout(new java.awt.GridBagLayout());
 
+        lblRotulo.setBackground(java.awt.Color.red);
         lblRotulo.setFont(new java.awt.Font("SansSerif", 1, 70)); // NOI18N
         lblRotulo.setForeground(java.awt.Color.white);
+        lblRotulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRotulo.setText("¡REBAJAS!");
-        getContentPane().add(lblRotulo, new java.awt.GridBagConstraints());
+        lblRotulo.setOpaque(true);
+        getContentPane().add(lblRotulo, java.awt.BorderLayout.CENTER);
 
         setSize(new java.awt.Dimension(500, 300));
         setLocationRelativeTo(null);
@@ -86,27 +73,19 @@ public final class GUI extends JFrame {
     // Inicialización Anterior    
     private void initBefore() {
         // Establecer LnF
-        UtilesSwing.establecerLnFProfile(prp.getProperty(
-                PRP_LOOK_AND_FEEL_PROFILE, DEF_LOOK_AND_FEEL_PROFILE));
+        UtilesSwing.establecerLnFProfile(prp.getProperty("look_and_feel_profile"));
     }
 
     // Inicialización Posterior
     private void initAfter() {
         // Establecer Favicon
-        UtilesSwing.establecerFavicon(this, prp.getProperty(
-                PRP_FAVICON_RESOURCE, DEF_FAVICON_RESOURCE));
-
-        // Panel Principal
-        getContentPane().setBackground(Color.RED);
+        UtilesSwing.establecerFavicon(this, prp.getProperty("img_favicon_resource"));
 
         // Ventana Principal
-        setTitle(prp.getProperty(PRP_FORM_TITLE, DEF_FORM_TITLE));
-        try {
-            int height = Integer.parseInt(prp.getProperty(PRP_FORM_HEIGHT));
-            int width = Integer.parseInt(prp.getProperty(PRP_FORM_WIDTH));
-            setSize(width, height);
-        } catch (NumberFormatException e) {
-            setSize(DEF_FORM_WIDTH, DEF_FORM_HEIGHT);
-        }
+        setTitle(prp.getProperty("form_title"));
+        int width = Integer.parseInt(prp.getProperty("form_width"));
+        int height = Integer.parseInt(prp.getProperty("form_height"));
+        setSize(width, height);
+        setLocationRelativeTo(null);
     }
 }
